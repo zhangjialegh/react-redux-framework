@@ -26,9 +26,11 @@ class Swiper extends Component {
     //该函数用来执行组件内部的事件，比如在这里就是nav组件菜单的导航点击事件
   }
   render() {
-
+    
+    const {className} = this.props
     return (
       <Carousel
+          className={`my_carousel ${className?className:''}`}
           autoplay={false}
           infinite
           beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
@@ -38,7 +40,7 @@ class Swiper extends Component {
             <a
               key={val}
               href="http://www.alipay.com"
-              style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
+              style={{ display: 'inline-block', width: '100%' }}
             >
               <img
                 src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 
 /*components*/
-import ScrollCard from './ScrollCard'
+// import ScrollCard from './ScrollCard'
 
 /*styles*/
 import styles from './styles/scrollview.less'
@@ -12,8 +12,8 @@ import styles from './styles/scrollview.less'
 // const search = require('./files/search.svg')
 
 export default class ScrollView extends React.Component {
-  state = {
-    list: [2,2,3,4,5,6,]
+  constructor(props) {
+    super(props)
   }
   componentDidMount() {
 
@@ -22,13 +22,10 @@ export default class ScrollView extends React.Component {
     //该函数用来执行组件内部的事件，比如在这里就是nav组件菜单的导航点击事件
   }
   render() {
-    const {list} = this.state
-    const {srcoll_view_wrapper} = styles
+    const {children,className} = this.props
     return (
-      <div className={srcoll_view_wrapper}>
-       {
-         list.map((item,index)=><ScrollCard key={item+index} last={index==list.length-1}/>)
-       }
+      <div className={`srcoll_view_wrapper ${className?className:''}`}>
+       {children}
       </div>
     )
   }

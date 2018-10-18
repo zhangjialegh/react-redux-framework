@@ -1,0 +1,111 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+/*actions*/
+
+/*components*/
+import echarts from 'echarts/lib/echarts'
+import 'echarts/lib/chart/radar'
+import 'echarts/lib/component/title'
+
+/*styles*/
+import styles from '../styles/chart.less'
+
+/*files*/
+// const header_bg = require('assets/image/home_header_bg.png')
+// const BasicInputExampleWrapper = createForm()(BasicInputExample);
+
+export default class RadarChart extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+
+    }
+  }
+  componentDidMount() {
+    let myChart = echarts.init(this.refs.radar)  
+		window.onresize = () => {
+      myChart.resize()
+    }
+		
+		const option = {
+          title: {
+            text: 88,
+            x: 'center',
+            y: 'center',
+            textStyle: {
+                color: '#fff',
+                fontWeight: 'bolder',
+                fontSize: 20,
+            }
+        },
+        radar: {
+            name: {
+                textStyle: {
+                    color: '#333',
+                    padding: [0, 5]
+              }
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: '#d5a478',
+                opacity: 0.58
+              }
+            },
+            splitArea: {
+                show: true,
+                areaStyle: {
+                  color: '#DADADA',
+                  opacity: 0.7
+                }
+            },
+            splitLine: {
+                show: false
+            },
+            indicator: [
+              { name: '房屋增值', max: 100},
+              { name: '抗跌能力', max: 100},
+              { name: '短租收益', max: 100},
+              { name: '长租收益', max: 100},
+              { name: '持有成本', max: 100}
+            ]
+        },
+        series: [{
+            type: 'radar',
+            symbol:"none",
+            lineStyle: {
+              opacity: 0
+            },
+            areaStyle: {
+              color: '#d5a478',
+              opacity: 1
+            },
+            data : [
+                {
+                    value : [99,78,87,67,80]
+                }
+            ]
+        }]
+    };
+    myChart.setOption(option)
+  }
+
+  componentWillUnmount() {
+    window.onresize = null
+  }
+
+
+  render() {
+   
+     return(
+      <div className={styles.radar_chart_wrapper}>
+        <p className={styles.radar_chart_title}>Better than 88% houses in the city</p>
+        <div ref="radar" className={styles.chart_container}></div>
+      </div>
+     )
+  }
+}
+RadarChart.propTypes = {
+
+}

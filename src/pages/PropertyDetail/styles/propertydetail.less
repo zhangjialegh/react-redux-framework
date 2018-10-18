@@ -1,0 +1,26 @@
+@import "~assets/style/normalize.less";
+.addr_title {
+  font-family: @font-family-semibold;
+  font-size: @addr-title-font-size;
+  color: @font-color-base;
+  line-height: 53px;
+  padding: 40px @section-padding 0;
+}
+.property_detail_wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: @bg-color-base;
+}
+:global{
+  .city_market_wrapper {
+    padding: 0 @section-padding;
+    .city_market_list {
+      &.border_none {
+        border: none;
+      }
+      &.border_top_none {
+        border-top: none;
+      }
+    }
+  }
+}

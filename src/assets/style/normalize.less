@@ -1,6 +1,5 @@
-@import "centurygothic.less";
-
-
+@import "centurygothic.css";
+@import "iconfont.css";
 @hd: 1px;
 /*字体*/
 // 苹方-简 常规体
@@ -17,21 +16,27 @@
 @font-family-semibold: PingFangSC-Semibold, sans-serif;
 
 /*字号*/
-@title-font-size-large: 32px;
-@title-font-size-medium: 18px;
-@title-font-size-small: 16px;
-@usual-font-size: 14px;
-@text-font-size:12px;
+@title-font-size-largest: 46 * @hd;
+@addr-title-font-size: 38 * @hd;
+@title-font-size-large: 32 * @hd;
+@title-font-size-large-small: 30 * @hd;
+@title-font-size-larger-medium: 26 * @hd;
+@title-font-size-larger: 24 * @hd;
+@title-font-size-medium: 18 * @hd;
+@title-font-size-small: 16 * @hd;
+@usual-font-size: 14 * @hd;
+@text-font-size:12 * @hd;
 
 
 /*颜色*/
 @color-gold-deep: #D5A478;
 @color-gold-light: #E4B992;
 @color-dark-deep: #464155;
+@tag-color-base: rgba(70,65,85,0.1);
 @color-dark-light: #5B556B;
 @color-red-deep: #FF5000;
 @color-red-light: #FF6628;
-@color-unable: #BBBBBB;
+@color-disabled: #BBBBBB;
 @color-green-deep: #29A520;
 @color-green-light: #45C53B;
 @color-blue-deep: #2A77D2;
@@ -39,10 +44,154 @@
 
 @font-color-deep: #000000;
 @font-color-light: #666666;
-@font-color-base: #333333;
+@font-color-lighter: #9B9B9B;
+@font-color-base: #4A4A4A;
 @font-color-white: #ffffff;
+@font-color-text: #4A4A4A;
 
 /*边框*/
 @border-color-base: #ddd;
 
+/*背景色*/
+@bg-color-grey: #FAFAFA;
+@bg-color-divider: #F8F8F8;
+@bg-color-base: #ffffff;
+
+/*阴影*/
+@box-shadow-base: 0 2*@hd 40*@hd 0 rgba(0,0,0,0.1);
+
+/*圆角*/
+@border-radius-base: 10 * @hd;
+@border-radius-sm: 4 * @hd;
+
+
+/*layout*/
+@section-padding: 30 * @hd;
+@title-padding-top: 40 * @hd;
+@tag-padding-base: 20 * @hd;
 @padding: 46 * @hd;
+
+* {
+  box-sizing: border-box;
+}
+:global {
+  .font_family {
+    font-size: 30px;
+    vertical-align: middle;
+  }
+  .icon-question {
+    font-size: 28px;
+    color: @color-disabled;
+    margin-left: 12px;
+  }
+  .loading_svg {
+    width: 90px;
+    height: 90px;
+  }
+  .text_left {
+    text-align: left;
+  }
+  .text_center {
+    text-align: center;
+  }
+  .text_right {
+    text-align: right;
+  }
+  .section_title {
+    font-family: @font-family-medium;
+    font-size: @title-font-size-large-small;
+    color: @font-color-base;
+    padding: 50px @section-padding 35px;
+  }
+  .section_divider {
+    height: 20px;
+    width: 100%;
+    background-color: @bg-color-divider;
+  }
+  
+
+  // scroll-view-card
+  .scroll_view_bottom {
+    padding-bottom: 56px;
+  }
+  .scroll_view_card {
+    width: 650px;
+    height: 580px;
+    border-radius: @border-radius-base;
+    box-shadow: @box-shadow-base;
+    margin-right: 30px;
+    display: inline-block;
+    background-color: @bg-color-base;
+    overflow: hidden;
+    &.last {
+      margin-right: 0;
+    }
+    .head_pic {
+      height: 416px;
+      width: 100%;
+    }
+    .body_wrapper {
+      padding: 3px @section-padding;
+      .dollar_number {
+        font-family: @font-family-medium;
+        font-size: @title-font-size-large-small;
+        color: @font-color-base;
+        line-height: 42px;
+      }
+      .info_text {
+        font-family: @font-family-regular;
+        font-size: @title-font-size-large-small;
+        color: @font-color-base;
+        line-height: 42px;
+      }
+      .info_text_regular {
+        font-family: @font-family-regular;
+        font-size: @title-font-size-large-small;
+        color: @font-color-light;
+        line-height: 42px;
+      }
+    }
+  }
+  // city list
+  .city_market_wrapper {
+    padding: 0 @section-padding;
+    .city_market_list {
+      border-top: 1px solid @border-color-base;
+      border-bottom: 1px solid @border-color-base;
+      padding: 32px 0;
+      li {
+        font-family: @font-family-medium;
+        font-size: @title-font-size-large-small;
+        color: @font-color-base;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 9px 0;
+        span {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  // property detail 
+  .number_text {
+    font-family: @font-family-semibold;
+    font-size: @title-font-size-large-small;
+    color: @font-color-base;
+    &.large {
+      font-size: @title-font-size-largest;
+    }
+  }
+  .desc_text {
+    font-family: @font-family-regular;
+    font-size: @title-font-size-larger;
+    color: @font-color-lighter;
+    white-space: pre-wrap;
+  }
+}
+ul,li,p {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

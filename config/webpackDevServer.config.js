@@ -37,10 +37,11 @@ module.exports = function(proxy, allowedHost) {
       app.use(noopServiceWorkerMiddleware());
         if (process.env.NODE_ENV !== 'production') {
             app.use(
-                '/book/*',
+                '/api/*',
                 proxyUrl({
-                    target: 'https://www.easy-mock.com/mock/593611b991470c0ac101d474',
-                    secure: false
+                    target: 'http://test.fanglimei.cn',
+                    secure: false,
+                    changeOrigin: true
                 })
             )
         }

@@ -17,6 +17,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const publicPath = paths.servedPath;
 const publicUrl = publicPath.slice(0, -1);
 const env = getClientEnvironment(publicUrl);
+const theme = require('../package.json').theme;
 
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
   throw new Error('Production builds must have NODE_ENV=production.');
@@ -50,6 +51,7 @@ module.exports = {
         'utils': path.resolve(__dirname, '../src/utils'),
         'routers': path.resolve(__dirname, '../src/routers'),
         'assets': path.resolve(__dirname, '../src/assets'),
+        'services': path.resolve(__dirname, '../src/services')
     },
     plugins: [
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
@@ -90,6 +92,15 @@ module.exports = {
             options: {
               compact: true,
             },
+          },
+          {
+            test: /\.(less)$/,
+            include: /node_modules\/antd-mobile/,
+            use: [
+              'style-loader',
+              'css-loader',
+              { loader: 'less-loader', options: {javascriptEnabled:true,modules: false, modifyVars: theme} }
+            ]
           },
           {
             test: /\.(less|css)$/,

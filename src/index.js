@@ -33,14 +33,11 @@ const store = createStore(
   )
 )
 
-const render = Component =>
-  ReactDOM.render(
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Component />
-        </ConnectedRouter>
-      </Provider>,
-    document.getElementById('root')
-  )
-
-render(App)
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App location={history.location}/>
+    </ConnectedRouter>
+  </Provider>,
+document.getElementById('root')
+)

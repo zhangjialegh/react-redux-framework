@@ -44,7 +44,8 @@ module.exports = {
         'reducers': path.resolve(__dirname, '../src/reducers'),
         'utils': path.resolve(__dirname, '../src/utils'),
         'routers': path.resolve(__dirname, '../src/routers'),
-        'assets': path.resolve(__dirname, '../src/assets')
+        'assets': path.resolve(__dirname, '../src/assets'),
+        'services': path.resolve(__dirname, '../src/services')
     },
     plugins: [
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),

@@ -5,9 +5,6 @@ import { global } from './global'
 import { auth } from './auth'
 const rootReducer = combineReducers({
   /* your reducers */
-  home, //首页相关
   search, //搜索相关
-  global,
-  auth
 })
 export default rootReducer

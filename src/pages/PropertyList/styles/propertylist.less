@@ -1,0 +1,203 @@
+@import '~assets/style/normalize.less';
+.property_wrapper {
+  width: 100%;
+}
+.search_wrapper {
+  padding: 115px 45px 25px;
+  background-color: @bg-color-grey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:global{
+  .menu_mask {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.4;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.3s;
+    &.active {
+      opacity: 0.4;
+      z-index: 69;
+    }
+  }
+  .single-foo-menu {
+    position: absolute;
+    z-index: 90 !important;
+    width: 100%;
+    transition: all 0.1s;
+  }
+  .single-top-nav-bar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    background-color: @bg-color-base;
+    padding: @section-padding;
+    font-family: @font-family-regular;
+    font-size: @title-font-size-large;
+    color: @font-color-base;
+    border-top: 0.5px solid @border-color-base;
+    border-bottom: 0.5px solid @border-color-base;
+    div {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .sort_up_down {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        i {
+          font-size: 20px;
+          &.active {
+            color: @color-gold-deep;
+          }
+        }
+      }
+      &:last-of-type {
+        border-left: 1px solid @border-color-base;
+        color: @color-gold-deep;
+        i {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  .single-menu-active .single-top-nav-bar {
+    z-index: 90;
+  }
+  .my-drawer {
+    position: relative;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .my-drawer .am-drawer-sidebar {
+    background-color: #fff;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .my-drawer .am-drawer-sidebar .am-list {
+    width: 300px;
+    padding: 0;
+  }
+  .filter_tag_item {
+    display: inline-block;
+    text-align: center;
+    border-radius: @border-radius-sm;
+    background-color: @tag-color-base;
+    font-family: @font-family-medium;
+    font-size: @title-font-size-medium;
+    color: @font-color-base;
+    line-height: 90px;
+    height: 90px;
+    margin: 5px;
+    &.width-slide-5 {
+      width: calc(20% - 10px);
+    }
+    &.width-slide-4 {
+      width: calc(25% - 10px);
+    }
+    &.width-slide-3 {
+      width: calc(33% - 10px);
+    }
+    &.width-slide-2 {
+      width: calc(50% - 10px);
+    }
+    &.active {
+      background-color: @color-dark-deep;
+      color: @font-color-white;
+    }
+  }
+  .filter_btn {
+    border-radius: 0;
+    width: 50%;
+    border: none;
+    outline: none;
+    &::before {
+      border: 1PX solid transparent !important;
+    }
+  }
+}
+
+
+
+
+.filter_wrapper {
+  position: fixed;
+  top: 0;
+  width: 600px;
+  height: 100vh;
+  transition: all 0.3s;
+  z-index: 90;
+  background-color: @bg-color-base;
+  .filter_container {
+    overflow-y: auto;
+    height: 100vh;
+    .filter_content {
+      height: auto;
+      padding-bottom: 140px;
+    }
+  }
+
+  header {
+    display: block;
+    width: 100%;
+    padding: 0 @section-padding;
+    border-bottom: 1px solid @border-color-base;
+    p {
+      display: inline-block;
+      padding: 60px 0 24px;
+      width: 50%;
+      font-family: @font-family-medium;
+      font-size: @title-font-size-large;
+      color: @font-color-base;
+      &:last-of-type {
+        text-align: right;
+      }
+    }
+  }
+  .filter_body {
+    padding: 0 @tag-padding-base;
+    width: 100%;
+    .filter_title {
+      padding: @title-padding-top 10px @section-padding;
+      font-family: @font-family-medium;
+      font-size: @title-font-size-larger;
+      color: @font-color-base;
+    }
+    ul {
+      width: 100%;
+    }
+  }
+  .btn_wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid @border-color-base;
+  }
+}

@@ -1,122 +1,101 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import isEmpty from 'utils/isEmpty'
-import { Button } from 'antd-mobile';
-//关于import什么时候用{}，什么时候不用大括号，通过那个插件或者组件是否包含default来判断，如果包含，则不需要{}
+import Link from 'react-router-dom/Link'
 
 /*actions*/
-import { getBook, getNav } from 'actions/home'
+
+
+/*api*/
+import { getCbsaRanking } from 'services'
 
 /*component*/
 import ErrorBoundary from 'pages/Commons/ErrorBoundary'
-import Header from './components/Header'
-import Nav from './components/Nav'
-import Special from './components/Special'
-import BookList from './components/BookList'
-import CreatePortal from 'create-portal'
+import SearchInput from 'components/SearchInput'
+import ScrollView from 'components/ScrollView'
+import TableEva from './components/TableEva'
+
+/*styles*/
 import styles from './styles/home.less'
 
 /*files*/
-const search = require('./files/search.svg')
-
-
-@connect(
-  state => state.getIn(['home']),
-  dispatch => bindActionCreators({ getBook, getNav }, dispatch)
-)
+const logo = require('assets/image/logo-light.svg')
+const header_bg = require('assets/image/home_header_bg.png')
+// const BasicInputExampleWrapper = createForm()(BasicInputExample);
 class Home extends React.Component {
-  state = {
-    isClickNav: false
+  constructor(props) {
+    super(props)
+    this.state = {
+      cbsaRankList: [],
+      topTenList: [1,2,3,4,5,6]
+    }
   }
   componentDidMount() {
-    const { navMain, bookDetails } = this.props
-    if (isEmpty(navMain)) {
-      this.props.getNav()
-    }
-    if (isEmpty(bookDetails)) {
-      this.props.getBook()
-    }
+    this.getCbsaRanking()
   }
-  handleClick = title => {
-    //该函数用来执行组件内部的事件，比如在这里就是nav组件菜单的导航点击事件
-    if (!!title) {
-      this.setState(() => ({ isClickNav: true }))
-    }
+
+  async getCbsaRanking(){
+   const res = await getCbsaRanking()
+   console.log(res,'gg')
+   this.setState({
+    cbsaRankList: res
+   })
   }
+
+
   render() {
-    const { navMain, bookDetails } = this.props
-    const { isClickNav } = this.state
-    console.log(this.state,this.props,'dididdidi');
+    const { cbsaRankList, topTenList } = this.state
+    console.log(this.state,this.props,'home state');
     
-    let portalStyle = {
-      width: '100%',
-      height: '100%',
-      background: '#fff',
-      position: 'fixed',
-      left: 0,
-      top: 0
-    }
-    //还可以通过自定义样式传递给组件
-    let bgClass = { background: '#00bb9c' } //定义一个背景色的变量
-    return (
-      <div>
+    const scroll_card = topTenList.map((item,index)=>(
+      <Link to="/citydetail" key={`key-${item}`} className={`scroll_view_card ${index==topTenList.length-1?'last':''}`}>
+         <div className="head_pic" style={{
+           backgroundImage: `url(${header_bg})`,
+           backgroundRepeat: 'no-repeat',
+           backgroundPosition: 'center center',
+           backgroundSize: 'cover'
+         }}></div>
+         <div className="body_wrapper">
+           <span className="dollar_number">$159,000</span>
+           <p className="info_text">9340 Carling street, New York, NY</p>
+           <p className="info_text_regular">2室1卫 784 sqft 建于1950</p>
+         </div>
+      </Link>
+    ))
+   
+     return(
+      <>
         <ErrorBoundary>
-          <Header
-              bgColor={bgClass}
-              imgUrl={search}
-              linkTo="search"
-              title="The book store"
-          />
+          <div></div>
         </ErrorBoundary>
-        <div className={styles.style_div}>
-          <Nav data={navMain}
-              handleClick={this.handleClick}
-          />
+        <div className={styles.home_wrapper}>
+          <header className={styles.home_header_wrapper} style={{
+            background: `url(${header_bg}) no-repeat center center`,
+            backgroundSize: 'cover'
+          }}>
+          <img className={styles.logo} src={logo} alt=""/>
+          <h2 className={styles.title}>Explore US Properties</h2>
+          <p className={styles.sub_title}>We Have All The Data You Need</p>
+          <SearchInput/>
+          </header>
+          <div className={styles.home_body_wrapper}>
+             <div className="section_title">Top 10 Properties</div>
+             <ScrollView className={'scroll_view_bottom'}>
+               {scroll_card}
+             </ScrollView>
+             <div className="section_divider"></div>
+             <div className="section_title">City Evaluation<span style={{
+               float: 'right',
+               color: '#D5A478',
+               paddingLeft: '80px'
+             }}>More</span></div>
+             <TableEva renderList={cbsaRankList}/>
+          </div>
         </div>
-        <div>
-          <Button type="primary"></Button>
-          <p className={styles.style_p}>project</p>
-          <Special />
-        </div>
-        <div>
-          <p className={styles.style_p}>List of books</p>
-          {bookDetails.map((ele, index) => (
-            <BookList
-                _id={ele._id}
-                author={ele.author}
-                currentPrice={ele.currentPrice}
-                index={index + 1}
-                key={index}
-                originalPrice={ele.originalPrice}
-                press={ele.press}
-                publishedDate={ele.publishedDate}
-                title={ele.title}
-            />
-          ))}
-        </div>
-        {isClickNav && (
-          <CreatePortal id={'test'}
-              style={portalStyle}
-          >
-            <div
-                onClick={() => this.setState({ isClickNav: false })}
-                style={{ width: '100%', height: '100%' }}
-            >
-              You click on the navigation, the activation play box, click
-              anywhere close bounced
-            </div>
-          </CreatePortal>
-        )}
-      </div>
-    )
+      </>
+     )
   }
 }
 Home.propTypes = {
-  navMain: PropTypes.array,
-  bookDetails: PropTypes.array,
-  match: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+
 }
 export default Home

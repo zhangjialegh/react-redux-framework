@@ -1,14 +1,29 @@
-.style_div {
+@import '~assets/style/normalize.less';
+.home_wrapper {
   width: 100%;
-  background: #fff;
-  padding: 6px  0;/*rem*/
-  overflow: hidden;
 }
-
-.style_p {
-  font-size: 32px;/*rem*/
-  color: #f0308A;
-  padding: 10px 30px;/*rem*/
-  border-bottom: 1px solid #f9f9f9;/*rem*/
+.home_header_wrapper {
+  width: 100%;
+  padding: 80px 40px;
+  .logo {
+    height: 37px;
+  }
+  .title {
+    font-family: @font-family-semibold;
+    font-size: @title-font-size-largest;
+    color: @font-color-white;
+    line-height: 65px;
+    margin-top: 30px;
+  }
+  .sub_title {
+    font-family: @font-family-medium;
+    font-size: @title-font-size-larger-medium;
+    color: @font-color-white;
+    line-height: 37px;
+    margin-bottom: 40px;
+  }
 }
-
+.home_body_wrapper {
+  background-color: @bg-color-base;
+  
+}

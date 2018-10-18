@@ -1,0 +1,92 @@
+@import '~assets/style/normalize.less';
+:global {
+  .list-view-section-body {
+    margin: 10px 0;
+  }
+}
+.list_view_wrapper {
+  padding: @tag-padding-base @section-padding;
+  background-color: @bg-color-base;
+}
+.card_items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: @box-shadow-base;
+  border-radius: @border-radius-base;
+  width: 690px;
+  height: 320px;
+  overflow: hidden;
+  margin: 0 auto;
+  .card_img_wrapper {
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .card_content_wrapper {
+    width: calc(100% - 200px);
+    height: 100%;
+    padding: 25px;
+    position: relative;
+    .collect_icon {
+      position: absolute;
+      width: 45px;
+      top: 25px;
+      right: 25px;
+    }
+    .card_top_container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column
+      }
+      .card_small_title {
+        font-family: @font-family-semibold;
+        font-size: @title-font-size-medium;
+        color: @font-color-text;
+        line-height: 45px;
+      }
+      .card_bold_number {
+        font-family: @font-family-semibold;
+        font-size: @title-font-size-large;
+        color: @font-color-text;
+        line-height: 45px;
+      }
+    }
+    .card_center_container {
+      padding: 16px 0;
+    }
+    .card_content_text {
+      font-family: @font-family-regular;
+      font-size: @title-font-size-medium;
+      color: @font-color-text;
+      line-height: 1.4;
+    }
+    .tag_container {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      li {
+        display: inline-block;
+        background-color: rgba(70,65,85,0.07);
+        border-radius: 6px;
+        padding: 10px;
+        white-space: nowrap;
+        margin-right: 5px;
+        font-family: @font-family-medium;
+        font-size: @text-font-size;
+        color: @font-color-text;
+      }
+    }
+  }
+}
+
+
+
+

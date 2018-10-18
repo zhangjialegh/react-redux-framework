@@ -1,0 +1,34 @@
+@import '~assets/style/normalize.less';
+.table_left {
+  display: inline-table;
+  vertical-align: middle;
+  width: 33%;
+  font-family: @font-family-semibold;
+  font-size: @title-font-size-larger-medium;
+  color: @font-color-base;
+  th,td {
+    padding: 32px @section-padding;
+    text-align: left;
+    white-space: nowrap;
+  }
+}
+.table_right_wrapper {
+  width: 67%;
+  display: inline-block;
+  vertical-align: middle;
+  .table_right_container {
+    overflow-x: auto;
+    width: auto;
+    font-family: @font-family-semibold;
+    font-size: @title-font-size-larger-medium;
+    color: @font-color-base;
+    th,td {
+      padding: 32px @section-padding;
+      text-align: center;
+      white-space: nowrap;
+    }
+    td {
+      font-family: @font-family-regular;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "~assets/style/normalize.less";
+.summary_wrapper {
+  padding: 0 @section-padding;
+}
+.summary_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-bottom: 40px;
+  border-bottom: 1px solid @border-color-base;
+  li {
+    width: 50%;
+    padding: 26px 35px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    i {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      font-size: 45px;
+    }
+    p {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      margin-left: 48px;
+      span {
+        font-family: @font-family-medium;
+        font-size: @title-font-size-larger;
+        color: @font-color-lighter;
+      }
+      strong {
+        font-family: @font-family-medium;
+        font-size: @title-font-size-large-small;
+        color: @font-color-base;
+      }
+    }
+  }
+}
